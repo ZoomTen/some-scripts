@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# finddeps 1.0
+
+# DESCRIPTION:
+# Finds the dependencies of an executable
+# or a shared object library. Useful for packaging
+# for distros.
+
+if [ -z "$1" ]
+then
+ echo "$0 [elf file, so/executable]";
+else
+ readelf -d $1 | grep "Shared library";
+fi

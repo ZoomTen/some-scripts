@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# lsfnx 1.0
+
+# DESCRIPTION:
+# Uses the "find" command to search for a specific
+# file extension. Kind of lame :p
+
+if [ -z "$1" ]
+then
+ echo "$0 [extension] [directory]";
+else
+ find $2 -iname "*.$1";
+fi

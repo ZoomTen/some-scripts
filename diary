@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# diary 1.0
+
+# DESCRIPTION:
+# A simple diary/journal/private notes program.
+# Replace the variables below with your own
+# Too lazy to test it
+
+# Replace it with an actual base64 encoded pseudo-password
+mypassword="MyBase64EncodedPseudoPasswordHere"
+
+# Replace with note editor program of choice
+noteeditor="leafpad"
+
+# Replace with own file names
+tempin="/tmp/dt.zumi"
+tempout="/tmp/de.zumi"
+
+# Replace with specified diary directory
+diarydirectory="~/diary/"
+
+# Replace with diary filename format
+# run "date --help" for info
+dfnformat="dia-%Y%m%d-%H%M%S.b"
+
+# ==========================================================================
+
+checkpasswd()
+   {
+      read -s -p "Enter password: " pas;
+      if [ "$pas" != "$(echo $mypassword | base64 -d)" ];
+         then echo;
+         echo "Wrong password. Run the diary command to try again.";
+         exit;
+      fi;
+   };
+   
+rdone()
+   {
+      rm $tempin;
+      exit;
+   }
+   
+case "$1" in
+
+"-r" )
+   if [ -z $2 ];
+      then echo "You must set file, without base directory!";
+      exit;
+   fi;
+   
+   checkpasswd;
+   cat $diarydirectory$2 | tr y-za-xY-ZA-X8-90-7 a-zA-Z0-9 | \
+   base64 -d > $tempout && \
+   $noteeditor $tempout && rm $tempout;;
+
+"-w" )
+   checkpasswd;
+   touch $tempin && \
+   $noteeditor $tempin && \
+   [ "$(cat $tempin)" == "" ] && rdone || \
+   cat $tempin | base64 \
+   | tr a-zA-Z0-9 y-za-xY-ZA-X8-90-7 | cat > \
+   $diarydirectory$(date +$dfnformat) && \
+   rdone;;
+   
+* )
+   echo "$0 -[rw]";
+   echo;
+   echo "-r = read diary entry";
+   echo "-w = write diary entry";
+   echo;
+   echo "no args = show help";;
+esac

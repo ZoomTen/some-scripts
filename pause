@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# pause 1.0
+
+# DESCRIPTION:
+# Pauses one or multiple instances of a process
+# by sending a SIGSTOP to them
+
+case "$1" in
+"" ) echo "$0 [process to pause]";;
+* ) 
+kill -SIGSTOP `pgrep $1`;;
+esac

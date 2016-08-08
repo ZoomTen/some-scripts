@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# startupsounds 1.0
+
+# DESCRIPTION:
+# You can use this script in your autostart
+# Make sure to install vlc first
+
+# replace with startup sound file location
+startupsound="/home/zumi/bin/startsounds/kde3.ogg";
+
+#replace with delay in seconds
+ssounddelay=10
+
+sleep $ssounddelay && cvlc $startupsound -q --no-repeat --play-and-exit;
