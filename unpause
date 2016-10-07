@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 # unpause 1.0
 
 # DESCRIPTION:
 # Unpauses one or multiple instances of a process
 # by sending a SIGCONT to them
+
+# DEPENDENCIES:
+# kill
 
 case "$1" in
 "" ) echo "$0 [process to unpause]";;

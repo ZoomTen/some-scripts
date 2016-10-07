@@ -1,11 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
 # diary 1.0
 
 # DESCRIPTION:
 # A simple diary/journal/private notes program.
 # Replace the variables below with your own
-# Too lazy to test it
+
+# DEPENDENCIES:
+# tr
+# date
+# base64
 
 # Replace it with an actual base64 encoded pseudo-password
 mypassword="MyBase64EncodedPseudoPasswordHere"

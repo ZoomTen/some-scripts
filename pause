@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 # pause 1.0
 
 # DESCRIPTION:
 # Pauses one or multiple instances of a process
 # by sending a SIGSTOP to them
+
+# DEPENDENCIES:
+# kill
 
 case "$1" in
 "" ) echo "$0 [process to pause]";;

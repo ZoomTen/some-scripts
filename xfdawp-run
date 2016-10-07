@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# xfdawp-run 1.0
+
+# DESCRIPTION:
+# XFDesktop Animated WallPaper
+# Magically turns your XFCE wallpaper into an animated one, beware of CPU usage
+# Only works for one workspace though :p
+# You can use this script in your autostart.
+
+# DEPENDENCIES:
+# xfdesktop
+# usleep
+# xfconf
+
+# replace with directory to animation frames
+animdir="~/wallpapers/bliss/"
+
+# replace with number of frames
+frames=120
+
+# initial frame number
+framecounter=0
+
+# replace with animation delay in nanoseconds
+delay=200000
+
+while [ $framecounter -le $frames ]; do
+let "framecounter += 1";
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s $animdir$framecounter.png;
+usleep $delay;
+if [ $framecounter -gt $frames ]; then let "framecounter = 0";fi
+done

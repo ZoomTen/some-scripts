@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 # startupsounds 1.0
 
 # DESCRIPTION:
 # You can use this script in your autostart
-# Make sure to install vlc first
+
+# DEPENDENCIES:
+# vlc
 
 # replace with startup sound file location
 startupsound="/home/zumi/bin/startsounds/kde3.ogg";

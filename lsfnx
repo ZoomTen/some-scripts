@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 # lsfnx 1.0
 
 # DESCRIPTION:
 # Uses the "find" command to search for a specific
 # file extension. Kind of lame :p
+
+# DEPENDENCIES:
+# find
 
 if [ -z "$1" ]
 then

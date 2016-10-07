@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # finddeps 1.0
 
@@ -6,6 +6,9 @@
 # Finds the dependencies of an executable
 # or a shared object library. Useful for packaging
 # for distros.
+
+# DEPENDENCIES:
+# readelf
 
 if [ -z "$1" ]
 then

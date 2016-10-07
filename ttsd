@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 # ttsd 1.0
 
 # DESCRIPTION:
 # Some yummy espeak presets to use.
-# espeak-ng is recommended
+
+# DEPENDENCIES:
+# espeak-ng
 
 opt="-s 173 $2"
 
