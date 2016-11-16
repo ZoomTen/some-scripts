@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# wal 1.0
+
+# DESCRIPTION:
+# Wine App Launcher
+# One poinless way to launch Wine apps
+
+# DEPENDENCIES:
+# wine
+
+# replace with base directory of Wine apps
+basedir="~/.local/wineapps"
+
+# replace with app name in command line
+app1="FamiTracker"
+# replace with app directory
+app1dir="$basedir/FamiTracker/FamiTracker.exe"
+
+app2="MS_Paint"
+app2dir="$basedir/Paint/MSPAINT.EXE"
+
+app3="SpaceCadet"
+app3dir="$basedir/Cadet/CADET.EXE"
+
+app4="OpenMPT"
+app4dir="$basedir/OpenMPT/mptrack.exe"
+
+if [[ "$1" != "" ]]; then
+	if [[ "$2" != "" ]]; then
+		case "$1" in
+# add as many as you'd like
+			$app1)
+				wine $app1dir "$(winepath -w "$2")"
+				;;
+			$app2)
+				wine $app2dir "$(winepath -w "$2")"
+				;;
+			$app3)
+				wine $app3dir "$(winepath -w "$2")"
+				;;
+			$app4)
+				wine $app4dir "$(winepath -w "$2")"
+				;;
+			*)
+				echo "Invalid app."
+				;;
+		esac
+	else
+		case "$1" in
+			$app1)
+				wine $app1dir
+				;;
+			$app2)
+				wine $app2dir
+				;;
+			$app3)
+				wine $app3dir
+				;;
+			$app4)
+				wine $app4dir
+				;;
+			*)
+				echo "Invalid app."
+				;;
+		esac
+	fi
+else
+	echo
+	echo "Wine App Launcher!"
+	echo "Use: wal <program> <open path>"
+	echo "Possible values:"
+	echo "
+	FamiTracker, 
+	MS_Paint, 
+	SpaceCadet, 
+	OpenMPT 
+	"
+fi
