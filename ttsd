@@ -23,7 +23,7 @@ case "$1" in
 9 ) espeak -v en-us -p 90 $opt;;
 10 ) espeak -v en -p 68 $opt;;
 11 ) espeak -v en-us -p 75 $opt;;
-12 ) espeak -a 200 -p 15 -s 150 -v en-us;;
+12 ) espeak -a 200 -p 15 -s 140 -v en-us;;
 * ) 
 echo "$0 [voice] [text]";
 echo;
