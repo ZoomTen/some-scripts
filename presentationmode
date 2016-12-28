@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# presentationmode 1.0
+
+# DESCRIPTION:
+# A thing to ease presenting on a Linux snort
+# Replace the variables below with your own
+
+# DEPENDENCIES:
+# xrandr
+# libnotify
+
+# Replace with suitable names
+# Check xrandr for info
+HDMI="HDMI-0"
+MainDisplay="eDP"
+
+# Might be VGA-0
+ProjectorDisplay="VGA-0"
+
+# Usually 1024x768, might be different depending on
+# the projector model.
+ProjectorResolution="1024x768"
+
+# Your regular resolution.
+# 1920x1080, 1280x720, 1366x768, etc.
+NormalResolution="1366x768"
+
+# ==========================================================================
+
+case "$1" in
+"-e")
+xrandr --addmode $ProjectorDisplay $ProjectorResolution;
+
+xrandr \
+--output $ProjectorDisplay --mode $ProjectorResolution --pos 0x0 --rotate normal \
+--output $MainDisplay --mode $ProjectorResolution --pos 0x0 --rotate normal \
+--output $HDMI --off;
+
+notify-send "Presentation mode activated." -i info -t 10;;
+
+"-d")
+xrandr \
+--output $MainDisplay --mode $NormalResolution --pos 0x0 --rotate normal \
+--output $ProjectorDisplay --off \
+--output $HDMI --off;
+
+xrandr --delmode $ProjectorDisplay $ProjectorResolution;
+
+notify-send "Presentation mode deactivated." -i info -t 10;;
+
+* )
+   echo "$0 -[ed]";
+   echo;
+   echo "-e = enable presentation mode";
+   echo "-d = disable presentation mode";
+   echo;
+   echo "no args = show help";;
+esac
